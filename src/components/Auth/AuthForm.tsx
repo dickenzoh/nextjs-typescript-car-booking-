@@ -102,7 +102,7 @@ const AuthForm = ({ isOpen, closeModal }: AuthFormProps) => {
 
                   <div className="flex-1 flex flex-col gap-2">
                     <h2 className="flex justify-center font-semibold text-xl capitalize">
-                      {isSignup ? "Sign Up." : "Sign In."}
+                      {isSignup ? "Sign Up." : "Log In."}
                     </h2>
                     <hr className="border-t border-gray-300 my-2" />
 
@@ -118,7 +118,7 @@ const AuthForm = ({ isOpen, closeModal }: AuthFormProps) => {
                       <CustomButton
                         btnType="button"
                         title="Github"
-                        containerStyles="bg-blue-600 hover:bg-blue-400 rounded-full text-white "
+                        containerStyles="bg-gray-700 hover:bg-gray-400 rounded-full text-white "
                         handleClick={() => {
                           signIn("github");
                         }}
@@ -192,16 +192,18 @@ const AuthForm = ({ isOpen, closeModal }: AuthFormProps) => {
                       </div>
 
                       <hr className="border-t border-gray-300 my-2" />
-                      <CustomButton
-                        btnType="button"
-                        title={
-                          isSignup
-                            ? "Already have an account? Sign In"
-                            : "Dont have an account? Sign Up"
-                        }
-                        handleClick={switchMode}
-                        containerStyles="bg-blue-600 hover:bg-blue-400 rounded-full text-white"
-                      />
+                      <div className="flex justify-center">
+                        <CustomButton
+                          btnType="button"
+                          title={
+                            isSignup
+                              ? "Already have an account? Sign In"
+                              : "Dont have an account? Sign Up"
+                          }
+                          handleClick={switchMode}
+                          containerStyles="bg-blue-600 hover:bg-blue-400 rounded-full text-white"
+                        />
+                      </div>
                       <hr className="border-t border-gray-300 my-4" />
                       <div className="w-full flex flex-row justify-end gap-4">
                         <CustomButton
