@@ -54,7 +54,7 @@ console.log(session)
   return(
     <header className='w-full  absolute z-10'>
     <nav className='max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4 bg-transparent'>
-      <Link href='/' className='flex justify-center items-center'>
+        <Link href='/' className='flex justify-center items-center'>
         <Image
           src='/logo.svg'
           alt='logo'
@@ -73,11 +73,12 @@ console.log(session)
       btnType='button'
       containerStyles='text-primary-blue rounded-full bg-white min-w-[130px]'
       handleClick={() => setFormOpen(true)}
-    /> }
+    />
+     }
       
       
     </nav>
-    <AuthForm isOpen={formOpen} closeModal={closeForm} car={car} />
+    <AuthForm isOpen={formOpen} closeModal={closeForm} />
   </header>
   )
 }
