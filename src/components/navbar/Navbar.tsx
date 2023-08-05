@@ -13,26 +13,21 @@ const NavBar = () => {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    const userDa = JSON.parse(localStorage.getItem('user') || JSON.stringify([]))
-    setUserData(userDa)
-    console.log(userDa)
-
+    const userDa = JSON.parse(
+      localStorage.getItem("user") || JSON.stringify([])
+    );
+    setUserData(userDa);
   }, []);
 
-  const session = useSession()
-console.log(session)
+  const session = useSession();
 
+  const closeForm = () => {
+    setFormOpen(false);
+  };
 
-  const closeForm = () =>{
-    setFormOpen(false)
-  }
-  
-  const handleLogout = () =>{
-    console.log('logout')
+  const handleLogout = () => {
     localStorage.clear();
-    console.log(userData)
-
-  }
+  };
 
   const car = {
     city_mpg: 28,
@@ -46,41 +41,40 @@ console.log(session)
     make: "Toyota",
     model: "Corolla",
     transmission: "Automatic",
-    year: 2021
-  }
+    year: 2021,
+  };
 
-  
-  
-  return(
-    <header className='w-full  absolute z-10'>
-    <nav className='max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4 bg-transparent'>
-        <Link href='/' className='flex justify-center items-center'>
-        <Image
-          src='/logo.svg'
-          alt='logo'
-          width={118}
-          height={18}
-          className='object-contain'
-        />
-      </Link>
-      {userData.length > 0 ? <CustomButton
-        title='Log out'
-        btnType='button'
-        containerStyles='text-primary-red rounded-full bg-white min-w-[130px]'
-        handleClick={handleLogout}
-      /> : <CustomButton
-      title='Sign in'
-      btnType='button'
-      containerStyles='text-primary-blue rounded-full bg-white min-w-[130px]'
-      handleClick={() => setFormOpen(true)}
-    />
-     }
-      
-      
-    </nav>
-    <AuthForm isOpen={formOpen} closeModal={closeForm} />
-  </header>
-  )
-}
+  return (
+    <header className="w-full  absolute z-10">
+      <nav className="max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4 bg-transparent">
+        <Link href="/" className="flex justify-center items-center">
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            width={118}
+            height={18}
+            className="object-contain"
+          />
+        </Link>
+        {userData.length > 0 ? (
+          <CustomButton
+            title="Log out"
+            btnType="button"
+            containerStyles="text-primary-red rounded-full bg-white min-w-[130px]"
+            handleClick={handleLogout}
+          />
+        ) : (
+          <CustomButton
+            title="Sign in"
+            btnType="button"
+            containerStyles="text-primary-blue rounded-full bg-white min-w-[130px]"
+            handleClick={() => setFormOpen(true)}
+          />
+        )}
+      </nav>
+      <AuthForm isOpen={formOpen} closeModal={closeForm} />
+    </header>
+  );
+};
 
 export default NavBar;

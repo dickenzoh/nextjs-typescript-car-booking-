@@ -33,8 +33,6 @@ const AuthForm = ({ isOpen, closeModal }: AuthFormProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(formData);
-    console.log("formData");
     localStorage.setItem("user", JSON.stringify(formData));
     clearForm();
     closeModal();
