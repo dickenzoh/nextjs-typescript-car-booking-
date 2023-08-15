@@ -6,13 +6,14 @@ import CustomFilter from "../components/CustomFilter";
 import SearchButton from "../components/Searchbar";
 import CarCard from "../components/CarCard";
 import { fetchCars } from "@/utils";
+import ShowMore from "@/components/ShowMore";
 
 export default async function Home({ searchParams }: HomeProps) {
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || "",
     year: searchParams.year || 2022,
     fuel: searchParams.fuel || "",
-    limit: searchParams.limit || 10,
+    limit: searchParams.limit || 5,
     model: searchParams.model || "",
   });
 
@@ -44,6 +45,10 @@ export default async function Home({ searchParams }: HomeProps) {
                 <CarCard car={car} />
               ))}
             </div>
+            <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) < allCars.length}
+            />
           </section>
         ) : (
           <div className="home__error-container">

@@ -1,10 +1,10 @@
 import { Fragment, useState } from "react";
 import Image from "next/image";
-//import ProfilePic from "../public/user-profile.jpg";
 import { getProviders, signIn, useSession } from "next-auth/react";
 
 import { Dialog, Transition } from "@headlessui/react";
 import CustomButton from "../global/CustomButton";
+import Link from "next/link";
 
 interface AuthFormProps {
   isOpen: boolean;
@@ -102,47 +102,52 @@ const AuthForm = ({ isOpen, closeModal }: AuthFormProps) => {
                     <h2 className="flex justify-center font-semibold text-xl capitalize">
                       {isSignup ? "Sign Up." : "Log In."}
                     </h2>
-                    <hr className="border-t border-gray-300 my-2" />
+                    {isSignup && (
+                      <>
+                        <hr className="border-t border-gray-300 my-2" />
 
-                    <div className="flex flex-wrap justify-center gap-2">
-                      <CustomButton
-                        btnType="button"
-                        title="Google"
-                        containerStyles="bg-blue-600 hover:bg-blue-400 rounded-full text-white "
-                        handleClick={() => {
-                          signIn("google");
-                        }}
-                      />
-                      <CustomButton
-                        btnType="button"
-                        title="Github"
-                        containerStyles="bg-gray-700 hover:bg-gray-400 rounded-full text-white "
-                        handleClick={() => {
-                          signIn("github");
-                        }}
-                      />
-                      <CustomButton
-                        btnType="button"
-                        title="Facebook"
-                        containerStyles="bg-red-600 hover:bg-red-400 rounded-full text-white "
-                        handleClick={() => {
-                          signIn("facebook");
-                        }}
-                      />
-                      <CustomButton
-                        btnType="button"
-                        title="Twitter"
-                        containerStyles="bg-red-600 hover:bg-red-400 rounded-full text-white "
-                        handleClick={() => {
-                          signIn("twitter");
-                        }}
-                      />
-                    </div>
-                    <hr className="border-t border-gray-300 mt-2" />
+                        <div className="flex flex-wrap justify-center gap-2">
+                          <CustomButton
+                            btnType="button"
+                            title="Google"
+                            containerStyles="bg-blue-600 hover:bg-blue-400 rounded-full text-white "
+                            handleClick={() => {
+                              signIn("google");
+                            }}
+                          />
+                          <CustomButton
+                            btnType="button"
+                            title="Github"
+                            containerStyles="bg-gray-700 hover:bg-gray-400 rounded-full text-white "
+                            handleClick={() => {
+                              signIn("github");
+                            }}
+                          />
+                          <CustomButton
+                            btnType="button"
+                            title="Facebook"
+                            containerStyles="bg-red-600 hover:bg-red-400 rounded-full text-white "
+                            handleClick={() => {
+                              signIn("facebook");
+                            }}
+                          />
+                          <CustomButton
+                            btnType="button"
+                            title="Twitter"
+                            containerStyles="bg-red-600 hover:bg-red-400 rounded-full text-white "
+                            handleClick={() => {
+                              signIn("twitter");
+                            }}
+                          />
+                        </div>
+                        <hr className="border-t border-gray-300 mt-2" />
 
-                    <h1 className="z-10 relative px-4 bg-white text-gray-500 font-bold text-center uppercase">
-                      or
-                    </h1>
+                        <h1 className="z-10 relative px-4 bg-white text-gray-500 font-bold text-center uppercase">
+                          or
+                        </h1>
+                      </>
+                    )}
+
                     <form onSubmit={handleSubmit}>
                       <div className="mt-2 flex flex-row flex-wrap gap-2">
                         {isSignup && (
@@ -178,6 +183,14 @@ const AuthForm = ({ isOpen, closeModal }: AuthFormProps) => {
                           onChange={handleChange}
                           className="border border-gray-300 focus:border-primary-blue rounded-lg py-2 px-4 outline-none transition-colors duration-150 ease-in-out"
                         />
+                        {!isSignup && (
+                          <Link
+                            className="flex justify-center items-center text-blue-400"
+                            href="/"
+                          >
+                            Forgot Password?
+                          </Link>
+                        )}
                         {isSignup && (
                           <input
                             type="password"
